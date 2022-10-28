@@ -1,6 +1,7 @@
 //Implementation of a parse tree in rust
 
 
+use parse_tree::{ParseTree};
 
 fn main() {
 
@@ -9,12 +10,12 @@ fn main() {
     let mut tester = ParseTree::new();
     tester = tester.fill_tree(string);
 
-    println!("{}", ParseTree::print_tree(tester.root));
+    println!("{}", ParseTree::print_tree(tester.get_root()));
 
     println!("Thank you for stopping by! :)");
 }
 
-//pub mod parse_tree {
+pub mod parse_tree {
     
     type Link = Option<Box<Node>>;
 
@@ -43,6 +44,8 @@ fn main() {
             ParseTree { root: None }
         }
 
+        pub fn get_root(self) -> Link { self.root }
+
         pub fn fill_tree(self, data: &str) -> Self {
             let mut stack = Vec::new();
             let mut input = false;
@@ -65,7 +68,6 @@ fn main() {
                     }
                 }
             }
-            println!("Finished for");
 
             if input {
                 return ParseTree { root: stack.pop() };
@@ -97,4 +99,4 @@ fn main() {
             return false;
         }
     }
-//}
+}
