@@ -32,12 +32,6 @@ fn main() {
                 value,
             }
         }
-
-        pub fn get_value(self) -> char { self.value }
-
-        pub fn get_left(self) -> Link { self.left }
-
-        pub fn get_right(self) -> Link { self.right }
     }
 
     pub struct ParseTree {
