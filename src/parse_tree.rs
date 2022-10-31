@@ -11,7 +11,8 @@ const DASH_VLINE: &str = "\u{2506}";
 const HLINE: &str = "\u{2500}";
 const DASH_HLINE: &str = "\u{2504}";
 const ELBOW: &str = "\u{2514}";
-const T_INT: &str = "\u{251C}";
+const VT_INT: &str = "\u{251C}";
+const HT_INT: &str = "\u{252C}";
 
 
 //renaming wrapped Node pointer for readability
@@ -84,7 +85,6 @@ type Link = Option<Box<Node>>;
                 None => "".to_string(),
                 Some(node) => {
                     let mut out = String::new();
-                    out.push_str("/\n");
                     out.push_str(Self::print_tree(node.left).as_str());
                     out.push_str(Self::print_tree(node.right).as_str());
                     out.push_str(node.value.to_string().as_str());
@@ -93,26 +93,32 @@ type Link = Option<Box<Node>>;
             }
         }
 
-        // pub fn dispaly_tree(root: Link, counter: u32) -> () {
+        pub fn dispaly_tree(root: Link) -> () {
 
-        //     let mut buffer = String::new();
-        //     if let Some(node) = root {
-        //         if counter != 0 {
-        //             buffer.push_str(node.value.to_string().as_str());
-        //             buffer.push_str("\n");
-        //             buffer.push_str(VLINE);
-        //         }
-        //         else {
-        //             buffer
-        //         }
-        //     }
-        // }
-    }
+            let mut stack = Vec::new();
+            if let Some(node) = root {
+                stack.push(node);
+            }
 
-    pub fn is_operator(value: char) -> bool {
-        if value == '-' || value == '+' || value == '/' || value == '*' {
-            return true;
-        } else {
-            return false;
+            while !stack.is_empty() {
+
+                if let Some(r_node) = node.right {
+
+                }
+                if let Some(l_node) = node.left {
+
+                }
+            }
+
+            
         }
+
     }
+
+pub fn is_operator(value: char) -> bool {
+    if value == '-' || value == '+' || value == '/' || value == '*' {
+        return true;
+    } else {
+        return false;
+    }
+}
