@@ -100,14 +100,17 @@ type Link = Option<Box<Node>>;
                 stack.push(node);
             }
 
+            let mut counter = 0;
             while !stack.is_empty() {
-
-                if let Some(r_node) = node.right {
-
+                Box::Node check = stack.pop();
+                // out = format!({}{}{})
+                if let Some(l_node) = check.left {
+                    stack.push(l_node);
                 }
-                if let Some(l_node) = node.left {
-
+                if let Some(r_node) = check.right {
+                    stack.push(r_node);
                 }
+
             }
 
             
