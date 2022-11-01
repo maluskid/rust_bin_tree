@@ -47,13 +47,12 @@ type Link = Option<Box<Node>>;
             ParseTree { root: None }
         }
 
-        pub fn get_root(self) -> Link { self.root }
+        pub fn get_root(&self) -> &Link { &self.root }
 
         pub fn fill_tree(self, data: &str) -> Self {
             let mut stack = Vec::new();
             let mut input = false;
             for i in data.chars() {
-                print!("{}", i);
                 if i != ' ' {
                     input = true;
 
@@ -79,41 +78,35 @@ type Link = Option<Box<Node>>;
             }
         }
 
-        pub fn print_tree(root: Link) -> String {
+        pub fn print_tree(root: &Link) -> String {
             
             match root {
                 None => "".to_string(),
                 Some(node) => {
                     let mut out = String::new();
-                    out.push_str(Self::print_tree(node.left).as_str());
-                    out.push_str(Self::print_tree(node.right).as_str());
+                    out.push_str(Self::print_tree(&node.left).as_str());
+                    out.push_str(Self::print_tree(&node.right).as_str());
                     out.push_str(node.value.to_string().as_str());
                     out
                 }
             }
         }
 
-        pub fn dispaly_tree(root: Link) -> () {
+        pub fn display_tree(root: &Link) -> () {
 
-            let mut stack = Vec::new();
+            // next time:
+            // make a function that display_tree calls
+            // and have that be the recursive func with \
+            // bool values for nodes etc
+
             if let Some(node) = root {
-                stack.push(node);
+                println!("{}", node.value.to_string());
+                let mut out = String::new();
+                out.push_str(DASH_HLINE);
+                // out.push_str();
+                Self::display_tree(&node.left);
+                Self::display_tree(&node.right);
             }
-
-            let mut counter = 0;
-            while !stack.is_empty() {
-                Box::Node check = stack.pop();
-                // out = format!({}{}{})
-                if let Some(l_node) = check.left {
-                    stack.push(l_node);
-                }
-                if let Some(r_node) = check.right {
-                    stack.push(r_node);
-                }
-
-            }
-
-            
         }
 
     }
